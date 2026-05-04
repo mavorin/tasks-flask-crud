@@ -49,9 +49,23 @@ paths:
               required:
                 - title
       responses:
-        '200':
+        '201':
           description: Nova tarefa criada com sucesso
   '/tasks/{taskId}':
+    get:
+      summary: Obter tarefa específica por ID
+      parameters:
+        - name: taskId
+          in: path
+          description: Número-identificador da tarefa a ser obtida
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Tarefa encontrada com sucesso
+        '404':
+          description: Tarefa não encontrada
     put:
       summary: Atualizar tarefa existente
       requestBody:
@@ -73,11 +87,10 @@ paths:
       parameters:
         - name: taskId
           in: path
-          description: ID da tarefa a ser atualizada
+          description: Número-identificador da tarefa a ser atualizada
           required: true
           schema:
             type: integer
-
       responses:
         '200':
           description: Tarefa atualizada com sucesso
@@ -86,7 +99,7 @@ paths:
       parameters:
         - name: taskId
           in: path
-          description: ID da tarefa a ser deletada
+          description: Número-identificador da tarefa a ser deletada
           required: true
           schema:
             type: integer
